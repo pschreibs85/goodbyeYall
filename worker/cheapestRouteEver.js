@@ -24,7 +24,6 @@ knex.insertCheapestRoute = function(obj){
   	destinationCity: obj.destinationCity
   })
   .then(function(currentCheapest){
-  	console.log('line27', currentCheapest);
 		if (currentCheapest.length===0){
 			return knex('cheapest_route_ever').insert(obj)
 		}

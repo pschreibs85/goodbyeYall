@@ -36,7 +36,6 @@ function cheapestRouteLastThirtyDaysWorker() {
 					if (x.destinationCity > y.destinationCity)return -1
 				}
 			})
-			console.log(data)
 			return data
 		})
 		.then(function(cheapestQuotes){
