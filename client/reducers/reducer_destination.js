@@ -18,15 +18,16 @@ export default function (state = INITIAL_STATE, action) {
 	// console.log('line 18 reducers/reducers_destination.js action is',action)
   switch (action.type){
 		case SET_ACTIVE_DESTINATION:
-    	let newState = {};
-    	newState.package_name = state.package_name;
-    	newState.fetching = state.fetching;
-			newState.passive = (state.passive.slice()).concat(state.active.slice());
-			newState.active = newState.passive.filter((obj) => {return obj.id === action.payload})
-			newState.passive = newState.passive.filter((obj) => {return obj.id !== action.payload})
+			let newState = {};
+			let insertIndex;
+			let oldActive = state.active.slice()
+			newState.package_name = state.package_name;
+			newState.fetching = state.fetching;
+			newState.active = state.passive.slice().filter((obj, ind) => {if(insertIndex === undefined && obj.id === action.payload){insertIndex = ind}; return obj.id === action.payload})
+			newState.passive = state.passive.slice(0, insertIndex).concat(oldActive[0], state.passive.slice(insertIndex+1))
     	return newState
 		case FETCH_PACKAGE:
-			return { passive: action.payload.data.slice(0,-1) , active: action.payload.data.slice(-1), package_name:action.payload.package_name, fetching:action.payload.fetching }
+			return { passive: action.payload.data.slice(0,-1), active: action.payload.data.slice(-1), package_name:action.payload.package_name, fetching:action.payload.fetching }
 		case IS_FETCHING:
 			let FETCHING_newState = {};
 			for (let key in state){
