@@ -107,7 +107,6 @@ function searchSkyscannerByDate(departureDate, originCity, destinationCity){
         }, [])
     })
     .then ( (objToInsertIntoDb) => {
-      console.log(objToInsertIntoDb);
       return objToInsertIntoDb
     })
 }
@@ -131,7 +130,8 @@ function generateFlightDates(daysOut){
 //
 // Insert flight object into quotes table
 Knex.insertQuotesIntoDb = function(flightObj) {
-  console.log("flightCount:",flightCount);
+  console.log("flightCount:", flightCount);
+  console.log("insertingQuote:", flightObj);
   return flightObj !== [] ? Knex('quotes').insert(flightObj) : undefined
 }
 
