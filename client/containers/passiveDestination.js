@@ -12,10 +12,10 @@ class PassiveDestination extends React.Component {
 		return(	
 			<div className='passive-photo' onClick={()=>this.props.setActiveDestination(this.props._id)} style={{'backgroundImage': 'url(' + this.props.main_image_url + ')'}}>
 				<div className='passive-photo-price-background'>	
-				<p className='passive-price'>
-					{"$" + Math.round(this.props.price)}
-					<p className='passive-title'>{this.props.destination}</p>
-				</p>
+					<p className='passive-price'>
+						{"$" + Math.round(this.props.price)}
+						<p className='passive-title'>{this.props.destination}</p>
+					</p>
 				</div>
 			</div>
 		) 
